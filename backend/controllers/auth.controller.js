@@ -1,7 +1,8 @@
-import { User } from "../models/user.model.js";
+import  User  from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie.js";
 dotenv.config();
 
 export const signup = async (req, res) => {
@@ -32,7 +33,7 @@ export const signup = async (req, res) => {
       phone,
     });
 
-    await user.save();
+    await user.save(); 
 
     //jwt
     generateTokenAndSetCookie(res, user._id);
@@ -47,7 +48,7 @@ export const signup = async (req, res) => {
       user: {
         ...user._doc,
         password: undefined,
-        R,
+        
       },
     });
   } catch (error) {
