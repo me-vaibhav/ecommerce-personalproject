@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema(
     },
     sellerid: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Seller",
     },
     producturl: {
       type: String,
