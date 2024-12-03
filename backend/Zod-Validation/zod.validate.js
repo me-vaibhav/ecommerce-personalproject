@@ -16,6 +16,7 @@ export const loginSchemaZod = z.object({
 export const productSchemaZod = z.object({
     name: z.string().min(3),
     description: z.string().min(3),
-    price: z.number(),
+    quantity: z.number().nonnegative(),
+    price: z.number().nonnegative(),
     producturl: z.string().url()
 }).passthrough()
