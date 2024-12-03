@@ -1,13 +1,16 @@
 import express from "express";
 import { signup } from "../controllers/auth.controller.js";
-import { validateLogin, validateSignUp } from "../Zod-Validation/zod_wrapper.js";
+import {
+  validateLogin,
+  validateSignUp,
+} from "../Zod-Validation/zod_wrapper.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.post("/signup",validateSignUp,signup)
-router.get("/signup",
-    (req,res) => res.send("get some sleep")
-)
+router.post("/signup", validateSignUp, signup);
+router.get("/signup", (req, res) => res.send("get some sleep"));
 
-export default router
+router.post("/login", validateLogin, login);
+router.get("/login", (req, res) => res.send("i am awake"));
 
+export default router;

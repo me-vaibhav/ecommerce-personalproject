@@ -55,3 +55,44 @@ export const signup = async (req, res) => {
     return res.status(400).json({ success: false, message: error.message });
   }
 };
+
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    if (!email || !password) {
+      throw new Error("All fields are required");
+    }
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid credentials" });
+    }
+
+    const checkPassword = await bcryptjs.verify(password,user.password );
+
+    if (!checkPassword) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid credentials" });
+    }
+
+    generateTokenAndSetCookie(res, user._id);
+
+    //await sendVerificationEmail(user.email,verificationToken)    user.email pr email bhejne k liye premium plan lagega mailtrap ka
+    //check kro aws ses ya mailgun ya firebase sab me kuch options honge
+   // await sendVerificationEmail(process.env.TEST_MAIL, verificationToken);
+
+    res.status(201).json({
+      success: true,
+      message: "user login successfully",
+      user: {
+        ...user._doc,
+        password: undefined,
+        
+      },
+    });
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
