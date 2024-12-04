@@ -2,6 +2,7 @@ import {z} from 'zod'
 import { loginSchemaZod, productSchemaZod, signUpSchemaZod } from './zod.validate.js'
 
 export const validateSignUp = (req, res, next) => {
+    console.log("validating signup")
     try {
         signUpSchemaZod.parse(req.body)  // Validates request body
         next()  // Pass to the next middleware if valid

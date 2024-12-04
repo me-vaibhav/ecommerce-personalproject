@@ -2,6 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import { connectDB } from "./db/connectDB.js";
 import authRouter from "./routes/auth.route.js";
+import navRouter from "./routes/navigation.route.js";
 import dotenv from "dotenv"; 
 import { signUpSchemaZod } from "./Zod-Validation/zod.validate.js";
 import { validateLogin } from "./Zod-Validation/zod_wrapper.js";
@@ -14,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 connectDB();
 dotenv.config();
-
+console.log("server")
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "Server is running",

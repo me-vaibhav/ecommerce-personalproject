@@ -23,6 +23,10 @@ const sellerSchema = new mongoose.Schema(
         required: true,
         // zod trim: true    
     },
+    productbucket:{
+        type:mongoose.Schema.Types.ObjectId,
+        unique:true
+    }
 },{timestamps: true})
 
 export default mongoose.model("Seller", sellerSchema);
