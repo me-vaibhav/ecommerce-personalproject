@@ -1,10 +1,13 @@
-import LoginForm from "./components/loginform"
+import Home from "./pages/Home"
+
+
 
 
 const App = () => {
   return (
     <div className="">
-      <LoginForm/>
+   
+    <Home/>
     </div>
   )
 }
